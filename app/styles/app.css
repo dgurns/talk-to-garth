@@ -546,9 +546,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .text-gray-600 {
@@ -571,7 +580,7 @@ html, body {
 }
 
 h1 {
-  font-size: 3.75rem;
+  font-size: 3rem;
   line-height: 1;
   font-weight: 700;
 }
