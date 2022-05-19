@@ -472,12 +472,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1rem;
 }
 
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .mt-12 {
   margin-top: 3rem;
 }
 
 .mt-10 {
   margin-top: 2.5rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-96 {
+  margin-bottom: 24rem;
+}
+
+.mb-48 {
+  margin-bottom: 12rem;
+}
+
+.mb-24 {
+  margin-bottom: 6rem;
 }
 
 .flex {
@@ -494,6 +522,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .flex-row {
@@ -528,6 +560,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -542,13 +580,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
-.text-center {
-  text-align: center;
+.pb-48 {
+  padding-bottom: 12rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
+.pb-96 {
+  padding-bottom: 24rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-3xl {
@@ -556,13 +601,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 2.25rem;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
 .text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 .transition-all {
@@ -582,6 +628,12 @@ html, body {
 h1 {
   font-size: 3rem;
   line-height: 1;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 700;
 }
 
@@ -611,12 +663,12 @@ p {
 }
 
 @media (min-width: 768px) {
-  .md\:mt-16 {
-    margin-top: 4rem;
+  .md\:mt-8 {
+    margin-top: 2rem;
   }
 
-  .md\:mt-12 {
-    margin-top: 3rem;
+  .md\:mt-16 {
+    margin-top: 4rem;
   }
 
   .md\:p-8 {

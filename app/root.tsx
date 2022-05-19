@@ -1,5 +1,6 @@
 import type { MetaFunction } from '@remix-run/cloudflare';
 import {
+	Link,
 	Links,
 	LiveReload,
 	Meta,
@@ -28,11 +29,19 @@ export default function App() {
 			</head>
 			<body>
 				<nav className="flex flex-row justify-start px-4 py-2 space-x-4">
-					<a href="/">Dan Gurney</a>
+					<Link to="/" prefetch="render">
+						Dan Gurney
+					</Link>
 					<span>/</span>
-					<a href="/software">Software</a>
-					<a href="/music">Music</a>
-					<a href="/blog">Blog</a>
+					<Link to="/software" prefetch="render">
+						Software
+					</Link>
+					<Link to="/music" prefetch="render">
+						Music
+					</Link>
+					<Link to="/blog" prefetch="render">
+						Blog
+					</Link>
 				</nav>
 
 				<Outlet />

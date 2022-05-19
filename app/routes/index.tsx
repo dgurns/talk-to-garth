@@ -2,8 +2,8 @@ import { Link } from '@remix-run/react';
 
 export default function Index() {
 	return (
-		<div className="flex flex-col items-center justify-center p-4 md:p-8">
-			<div className="flex flex-col items-center justify-center text-center mt-4 md:mt-16">
+		<div className="flex flex-col items-center justify-center p-4 md:p-8 mb-24">
+			<div className="flex flex-col items-center justify-center text-center mt-8 md:mt-16">
 				<img
 					src="/images/DanGurneyPhotoCircle.png"
 					alt="Dan Gurney"
