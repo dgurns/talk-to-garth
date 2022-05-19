@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	@apply bg-gray-900 text-gray-50;
+}
+
+h1 {
+	@apply text-6xl font-bold;
+}
+
+a {
+	@apply text-blue-200 hover:underline;
+}
