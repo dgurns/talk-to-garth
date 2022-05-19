@@ -1,3 +1,9 @@
+export function meta() {
+	return {
+		title: 'Dan Gurney - Music',
+	};
+}
+
 export default function Music() {
 	return (
 		<div className="p-4 md:p-8 mt-4 md:mt-8 flex flex-col items-center mb-48">

@@ -1,3 +1,9 @@
+export function meta() {
+	return {
+		title: 'Dan Gurney - Blog',
+	};
+}
+
 export default function Blog() {
 	return (
 		<div className="p-4 md:p-8 mt-4 md:mt-8 flex flex-col items-center pb-48">

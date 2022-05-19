@@ -1,5 +1,9 @@
 import { Link } from '@remix-run/react';
 
+export const meta = () => ({
+	title: 'Dan Gurney - Personal Site',
+});
+
 export default function Index() {
 	return (
 		<div className="flex flex-col items-center justify-center p-4 md:p-8 mb-24">

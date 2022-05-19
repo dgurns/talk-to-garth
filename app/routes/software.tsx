@@ -1,3 +1,9 @@
+export function meta() {
+	return {
+		title: 'Dan Gurney - Software',
+	};
+}
+
 export default function Software() {
 	return (
 		<div className="p-4 md:p-8 mt-4 md:mt-8 flex flex-col items-center mb-48">
@@ -24,9 +30,9 @@ export default function Software() {
 				</p>
 				<p>
 					I often use React, Svelte, Node, TypeScript, Go, Python, REST,
-					GraphQL, CSS, Tailwind, Jest, React Testing Library, Playwright,
-					Postgres, MySQL, all manner of AWS and GCP services, Docker,
-					Kubernetes, and CI/CD.
+					GraphQL, CSS, Tailwind, Figma, Jest, React Testing Library,
+					Playwright, Postgres, MySQL, all manner of AWS and GCP services,
+					Cloudflare, Vercel, Docker, Kubernetes, and CI/CD.
 				</p>
 				<p>
 					Have a question or idea? Please feel free to{' '}
@@ -50,7 +56,7 @@ export default function Software() {
 							added event tracking, introduced TypeScript, set up scalable dev
 							processes with automated CI/CD, mentored engineers, and worked on
 							new product development, among many other things. Some tools I've
-							used are React, NextJS, TypeScript, Playwright, Go, Python,
+							used are React, NextJS, TypeScript, Playwright, Go, Python, gRPC,
 							Docker, AWS Lambda, Kubernetes, Vercel, and GitHub Actions.
 						</div>
 					</li>
