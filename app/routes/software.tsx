@@ -40,7 +40,7 @@ export default function Software() {
 				</p>
 
 				<h2 className="mt-8">Recent Projects:</h2>
-				<ul className="list-disc mt-6 space-y-4">
+				<ul className="list-none md:list-disc mt-6 space-y-4">
 					<li>
 						<a
 							href="https://predictionhealth.com"
