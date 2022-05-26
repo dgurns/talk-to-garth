@@ -23,6 +23,30 @@ p {
 	@apply mb-4;
 }
 
-.blog-post h1 {
-	@apply mb-6;
+.blog-post blockquote {
+	@apply p-4 mt-8 mb-8 bg-gray-800 text-gray-200 border-l-2 border-gray-400 rounded rounded-l-none;
+}
+
+.blog-post blockquote p {
+	@apply mb-0;
+}
+
+.blog-post ul {
+	@apply list-disc list-inside;
+}
+
+.blog-post ol {
+	@apply list-decimal;
+}
+
+.blog-post hr {
+	@apply border-gray-400 mt-8 mb-8 mx-[10%];
+}
+
+.blog-post pre code {
+	@apply flex w-full bg-black rounded whitespace-pre-line text-sm p-4 mt-8 mb-8;
+}
+
+.blog-post code {
+	@apply bg-black text-sm px-1 py-1 rounded;
 }

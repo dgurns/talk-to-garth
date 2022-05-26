@@ -1,9 +1,12 @@
 import { Link } from '@remix-run/react';
 import { useState } from 'react';
+import { posts } from 'app/routes/blog/index';
 
 export const meta = () => ({
 	title: 'Dan Gurney - Personal Site',
 });
+
+const mostRecentPost = posts.shift();
 
 export default function Index() {
 	const [showYears, setShowYears] = useState(false);
@@ -20,17 +23,22 @@ export default function Index() {
 			<ul className="mt-12 space-y-2">
 				<li>
 					I'm lead engineer at Prediction Health.{' '}
-					<Link to="/software">Go to Software 👨🏻‍💻</Link>
+					<Link to="/software">Go to Software</Link>
 				</li>
 				<li>
-					I play the accordion. <Link to="/music">Go to Music 🪗</Link>
+					I play the accordion. <Link to="/music">Go to Music</Link>
 				</li>
-				<li>
-					Sometimes I write blog posts. <Link to="/blog">Go to Blog 💡</Link>
-				</li>
+				{mostRecentPost && (
+					<li>
+						Latest blog post:{' '}
+						<Link to={`/blog/${mostRecentPost.slug}`}>
+							{mostRecentPost.title}
+						</Link>
+					</li>
+				)}
 			</ul>
 
-			<div className="flex flex-row items-center space-x-4 mt-10">
+			<footer className="flex flex-row items-center space-x-4 mt-10">
 				<a href="https://www.linkedin.com/in/dangurney/">
 					<img
 						src="/images/LinkedIn-White-96.png"
@@ -51,7 +59,7 @@ export default function Index() {
 				>
 					✉️
 				</a>
-			</div>
+			</footer>
 
 			<div className="text-center text-gray-400 text-sm mt-2">
 				<button onClick={() => setShowYears(!showYears)}>
