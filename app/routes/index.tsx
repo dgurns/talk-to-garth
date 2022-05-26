@@ -6,7 +6,7 @@ export const meta = () => ({
 	title: 'Dan Gurney - Personal Site',
 });
 
-const mostRecentPost = posts.shift();
+const mostRecentPost = posts[0];
 
 export default function Index() {
 	const [showYears, setShowYears] = useState(false);
@@ -22,11 +22,10 @@ export default function Index() {
 
 			<ul className="mt-12 space-y-2">
 				<li>
-					I'm lead engineer at Prediction Health.{' '}
-					<Link to="/software">Go to Software</Link>
+					I'm <Link to="/software">lead engineer</Link> at Prediction Health.
 				</li>
 				<li>
-					I play the accordion. <Link to="/music">Go to Music</Link>
+					I play the <Link to="/music">accordion</Link>.
 				</li>
 				{mostRecentPost && (
 					<li>
