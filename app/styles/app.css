@@ -472,14 +472,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-24 {
-  margin-bottom: 6rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
 }
@@ -496,8 +488,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
-.mb-48 {
-  margin-bottom: 12rem;
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .mb-4 {
@@ -520,16 +512,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.5rem;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .max-w-xl {
   max-width: 36rem;
-}
-
-.list-inside {
-  list-style-position: inside;
-}
-
-.list-disc {
-  list-style-type: disc;
 }
 
 .list-none {
@@ -654,6 +642,10 @@ a:hover {
 
 p {
   margin-bottom: 1rem;
+}
+
+.blog-post h1 {
+  margin-bottom: 1.5rem;
 }
 
 .hover\:scale-125:hover {

@@ -44,7 +44,12 @@ export default function App() {
 					</Link>
 				</nav>
 
-				<Outlet />
+				<div className="flex flex-col items-center p-4 md:p-8 mt-4 md:mt-8 pb-48">
+					<div className="max-w-xl w-full">
+						<Outlet />
+					</div>
+				</div>
+
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
