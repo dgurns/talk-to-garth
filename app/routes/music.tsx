@@ -12,7 +12,9 @@ interface LoaderData {
 	test1: string;
 }
 interface LoaderArgs {
-	context: Record<string, any>;
+	context: {
+		YOUTUBE_API_KEY: string;
+	};
 }
 interface YouTubeResponse {
 	items: Array<{
@@ -21,15 +23,15 @@ interface YouTubeResponse {
 }
 
 export async function loader({ context }: LoaderArgs) {
-	// const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
-	// const apiKey = context.YOUTUBE_API_KEY ?? context.env?.YOUTUBE_API_KEY;
+	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
+	const apiKey = context.YOUTUBE_API_KEY;
 	// const res = await fetch(
 	// 	`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
 	// );
 	// const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
 		latestVideoId: 'abc123', // data.items[0].id.videoId,
-		test1: JSON.stringify(context),
+		test1: apiKey,
 	});
 }
 
