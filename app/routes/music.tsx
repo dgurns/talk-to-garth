@@ -9,6 +9,9 @@ export function meta() {
 
 interface LoaderData {
 	latestVideoId: string;
+	test1: string;
+	test2: string;
+	test3: string;
 }
 interface LoaderArgs {
 	context: Record<string, any>;
@@ -28,14 +31,22 @@ export async function loader({ context }: LoaderArgs) {
 	const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
 		latestVideoId: data.items[0].id.videoId,
+		test1: JSON.stringify(context),
+		test2: JSON.stringify(env),
+		test3: JSON.stringify(YOUTUBE_API_KEY),
 	});
 }
 
 export default function Music() {
-	const { latestVideoId } = useLoaderData<LoaderData>();
+	const { latestVideoId, test1, test2, test3 } = useLoaderData<LoaderData>();
 
 	return (
 		<div>
+			{test1} <br />
+			{test2}
+			<br />
+			{test3}
+			<br />
 			<h1 className="mb-6">Music</h1>
 			<p>
 				I first picked up an accordion in a toy store in upstate New York and
@@ -47,7 +58,6 @@ export default function Music() {
 				Have a question? Feel free to{' '}
 				<a href="mailto:dan@dangurney.net">get in touch</a>.
 			</p>
-
 			<h2 className="mt-8 mb-6">YouTube Channel</h2>
 			<iframe
 				title="YouTube Video"
@@ -58,7 +68,6 @@ export default function Music() {
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowFullScreen
 			/>
-
 			<h2 className="mt-8 mb-6">Solo Albums</h2>
 			<iframe
 				title="Traditional Irish Music on the Button Accordion"
@@ -85,7 +94,6 @@ export default function Music() {
 					Ignorance Is Bliss by Dan Gurney
 				</a>
 			</iframe>
-
 			<h2 className="mt-8 mb-6">Duet Album</h2>
 			<iframe
 				title="Irish Music from the Hudson Valley"
@@ -99,7 +107,6 @@ export default function Music() {
 					Irish Music from the Hudson Valley by Dylan Foley and Dan Gurney
 				</a>
 			</iframe>
-
 			<h2 className="mt-8 mb-6">Band Albums</h2>
 			<iframe
 				title="The Yanks"
