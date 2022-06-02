@@ -3,3 +3,9 @@ declare global {
 }
 
 export default global;
+
+export interface LoaderArgs {
+	context: {
+		YOUTUBE_API_KEY: string;
+	}
+}

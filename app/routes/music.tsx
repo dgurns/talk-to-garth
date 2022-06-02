@@ -1,5 +1,6 @@
 import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
+import { type LoaderArgs } from '~/types';
 
 export function meta() {
 	return {
@@ -9,13 +10,8 @@ export function meta() {
 
 interface LoaderData {
 	latestVideoId: string;
-	test1: string;
 }
-interface LoaderArgs {
-	context: {
-		YOUTUBE_API_KEY: string;
-	};
-}
+
 interface YouTubeResponse {
 	items: Array<{
 		id: { videoId: string };
@@ -25,22 +21,20 @@ interface YouTubeResponse {
 export async function loader({ context }: LoaderArgs) {
 	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
 	const apiKey = context.YOUTUBE_API_KEY;
-	// const res = await fetch(
-	// 	`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
-	// );
-	// const data = await res.json<YouTubeResponse>();
+	const res = await fetch(
+		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
+	);
+	const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
-		latestVideoId: 'abc123', // data.items[0].id.videoId,
-		test1: apiKey,
+		latestVideoId: data.items[0].id.videoId,
 	});
 }
 
 export default function Music() {
-	const { latestVideoId, test1 } = useLoaderData<LoaderData>();
+	const { latestVideoId } = useLoaderData<LoaderData>();
 
 	return (
 		<div>
-			{test1}
 			<h1 className="mb-6">Music</h1>
 			<p>
 				I first picked up an accordion in a toy store in upstate New York and
