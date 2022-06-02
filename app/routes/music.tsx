@@ -21,12 +21,12 @@ interface YouTubeResponse {
 export async function loader({ context }: LoaderArgs) {
 	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
 	const apiKey = context.YOUTUBE_API_KEY;
-	const res = await fetch(
-		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
-	);
-	const data = await res.json<YouTubeResponse>();
+	// const res = await fetch(
+	// 	`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
+	// );
+	// const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
-		latestVideoId: data.items[0].id.videoId,
+		latestVideoId: JSON.stringify(context), // data.items[0].id.videoId,
 	});
 }
 
@@ -35,6 +35,7 @@ export default function Music() {
 
 	return (
 		<div>
+			{latestVideoId}
 			<h1 className="mb-6">Music</h1>
 			<p>
 				I first picked up an accordion in a toy store in upstate New York and
