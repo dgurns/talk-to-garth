@@ -56,15 +56,17 @@ export default function Music() {
 				<a href="mailto:dan@dangurney.net">get in touch</a>.
 			</p>
 			<h2 className="mt-8 mb-6">YouTube Channel</h2>
-			<iframe
-				title="YouTube Video"
-				width="100%"
-				height="350"
-				src={`https://www.youtube.com/embed/${latestVideoId}`}
-				frameBorder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowFullScreen
-			/>
+			<div className="aspect-video">
+				<iframe
+					title="YouTube Video"
+					width="100%"
+					height="100%"
+					src={`https://www.youtube.com/embed/${latestVideoId}`}
+					frameBorder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowFullScreen
+				/>
+			</div>
 			<h2 className="mt-8 mb-6">Solo Albums</h2>
 			<iframe
 				title="Traditional Irish Music on the Button Accordion"
