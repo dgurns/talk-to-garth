@@ -10,12 +10,9 @@ export function meta() {
 interface LoaderData {
 	latestVideoId: string;
 	test1: string;
-	test2: string;
-	test3: string;
 }
 interface LoaderArgs {
 	context: Record<string, any>;
-	env: Record<string, any>;
 }
 interface YouTubeResponse {
 	items: Array<{
@@ -23,31 +20,25 @@ interface YouTubeResponse {
 	}>;
 }
 
-export async function loader({ context, env }: LoaderArgs) {
-	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
-	const apiKey = context.YOUTUBE_API_KEY ?? YOUTUBE_API_KEY;
-	const res = await fetch(
-		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
-	);
-	const data = await res.json<YouTubeResponse>();
+export async function loader({ context }: LoaderArgs) {
+	// const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
+	// const apiKey = context.YOUTUBE_API_KEY ?? context.env?.YOUTUBE_API_KEY;
+	// const res = await fetch(
+	// 	`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
+	// );
+	// const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
-		latestVideoId: data.items[0].id.videoId,
+		latestVideoId: 'abc123', // data.items[0].id.videoId,
 		test1: JSON.stringify(context),
-		test2: JSON.stringify(env),
-		test3: JSON.stringify(YOUTUBE_API_KEY),
 	});
 }
 
 export default function Music() {
-	const { latestVideoId, test1, test2, test3 } = useLoaderData<LoaderData>();
+	const { latestVideoId, test1 } = useLoaderData<LoaderData>();
 
 	return (
 		<div>
-			{test1} <br />
-			{test2}
-			<br />
-			{test3}
-			<br />
+			{test1}
 			<h1 className="mb-6">Music</h1>
 			<p>
 				I first picked up an accordion in a toy store in upstate New York and
