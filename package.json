@@ -5,13 +5,13 @@
   "license": "",
   "sideEffects": false,
   "scripts": {
-		"dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
     "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public --binding $(cat .env)",
     "dev": "remix build && run-p dev:*",
     "start": "cross-env NODE_ENV=production npm run dev:wrangler",
-		"build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
-		"build": "npm run build:css && remix build"
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "build": "npm run build:css && remix build"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^1.5.1",

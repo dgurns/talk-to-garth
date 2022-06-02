@@ -1,10 +1,39 @@
+import { json } from '@remix-run/cloudflare';
+import { useLoaderData } from '@remix-run/react';
+
 export function meta() {
 	return {
 		title: 'Dan Gurney - Music',
 	};
 }
 
+interface LoaderData {
+	latestVideoId: string;
+}
+interface LoaderArgs {
+	context: Record<string, any>;
+}
+interface YouTubeResponse {
+	items: Array<{
+		id: { videoId: string };
+	}>;
+}
+
+export async function loader({ context }: LoaderArgs) {
+	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
+	const apiKey = context.YOUTUBE_API_KEY;
+	const res = await fetch(
+		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
+	);
+	const data = await res.json<YouTubeResponse>();
+	return json<LoaderData>({
+		latestVideoId: data.items[0].id.videoId,
+	});
+}
+
 export default function Music() {
+	const { latestVideoId } = useLoaderData<LoaderData>();
+
 	return (
 		<div>
 			<h1 className="mb-6">Music</h1>
@@ -24,7 +53,7 @@ export default function Music() {
 				title="YouTube Video"
 				width="100%"
 				height="350"
-				src="https://www.youtube.com/embed/eSqKa_M5vXw"
+				src={`https://www.youtube.com/embed/${latestVideoId}`}
 				frameBorder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowFullScreen

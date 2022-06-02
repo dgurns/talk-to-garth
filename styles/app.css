@@ -24,7 +24,7 @@ p {
 }
 
 .blog-post h2 {
-	@apply mt-4 mb-8;
+	@apply mt-8 mb-8;
 }
 
 .blog-post iframe {
