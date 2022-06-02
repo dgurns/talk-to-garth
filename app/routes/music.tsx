@@ -2,6 +2,12 @@ import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { type LoaderArgs } from '~/types';
 
+export function headers() {
+	return {
+		'Cache-Control': 'max-age=3600, s-maxage=3600',
+	};
+}
+
 export function meta() {
 	return {
 		title: 'Dan Gurney - Music',
