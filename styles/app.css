@@ -23,6 +23,14 @@ p {
 	@apply mb-4;
 }
 
+.blog-post h2 {
+	@apply mt-4 mb-8;
+}
+
+.blog-post iframe {
+	@apply mb-8;
+}
+
 .blog-post blockquote {
 	@apply p-4 mt-8 mb-8 bg-gray-800 text-gray-200 border-l-2 border-gray-400 rounded rounded-l-none;
 }

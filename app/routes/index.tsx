@@ -22,10 +22,10 @@ export default function Index() {
 
 			<ul className="mt-12 space-y-2">
 				<li>
-					I'm <Link to="/software">lead engineer</Link> at Prediction Health.
+					I'm <Link to="/software">lead engineer</Link> at Prediction Health
 				</li>
 				<li>
-					I play the <Link to="/music">accordion</Link>.
+					I play the <Link to="/music">accordion</Link>
 				</li>
 				{mostRecentPost && (
 					<li>
