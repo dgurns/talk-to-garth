@@ -21,12 +21,19 @@ interface YouTubeResponse {
 export async function loader({ context }: LoaderArgs) {
 	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
 	const apiKey = context.YOUTUBE_API_KEY;
-	// const res = await fetch(
-	// 	`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
-	// );
-	// const data = await res.json<YouTubeResponse>();
+
+	let response = '';
+	try {
+		const res = await fetch(
+			`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
+		);
+		const data = await res.json<YouTubeResponse>();
+		response = JSON.stringify(data);
+	} catch (err) {
+		response = 'Error: ' + JSON.stringify(err);
+	}
 	return json<LoaderData>({
-		latestVideoId: context.YOUTUBE_API_KEY, // data.items[0].id.videoId,
+		latestVideoId: response, // data.items[0].id.videoId,
 	});
 }
 
