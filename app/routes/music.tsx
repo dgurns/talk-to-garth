@@ -15,6 +15,7 @@ interface LoaderData {
 }
 interface LoaderArgs {
 	context: Record<string, any>;
+	env: Record<string, any>;
 }
 interface YouTubeResponse {
 	items: Array<{
@@ -22,7 +23,7 @@ interface YouTubeResponse {
 	}>;
 }
 
-export async function loader({ context }: LoaderArgs) {
+export async function loader({ context, env }: LoaderArgs) {
 	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
 	const apiKey = context.YOUTUBE_API_KEY ?? YOUTUBE_API_KEY;
 	const res = await fetch(
