@@ -35,7 +35,6 @@ export default function Music() {
 
 	return (
 		<div>
-			{latestVideoId}
 			<h1 className="mb-6">Music</h1>
 			<p>
 				I first picked up an accordion in a toy store in upstate New York and
