@@ -21,7 +21,7 @@ interface YouTubeResponse {
 
 export async function loader({ context }: LoaderArgs) {
 	const channelId = 'UC-noq8EUFYOyTUc1083bLZg';
-	const apiKey = context.YOUTUBE_API_KEY;
+	const apiKey = context.YOUTUBE_API_KEY ?? YOUTUBE_API_KEY;
 	const res = await fetch(
 		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
 	);
