@@ -26,7 +26,7 @@ export async function loader({ context }: LoaderArgs) {
 	// );
 	// const data = await res.json<YouTubeResponse>();
 	return json<LoaderData>({
-		latestVideoId: JSON.stringify(context), // data.items[0].id.videoId,
+		latestVideoId: context.YOUTUBE_API_KEY, // data.items[0].id.videoId,
 	});
 }
 
