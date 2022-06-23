@@ -13,6 +13,11 @@ interface Post {
 }
 export const posts: Post[] = [
 	{
+		title: 'Promo Video for "From the Bridge"',
+		date: 'June 23, 2022',
+		slug: 'promo-from-the-bridge',
+	},
+	{
 		title: 'New Compositions for ITMA',
 		date: 'June 2, 2022',
 		slug: 'new-compositions-itma',

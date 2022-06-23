@@ -512,6 +512,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
