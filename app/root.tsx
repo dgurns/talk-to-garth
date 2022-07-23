@@ -74,8 +74,8 @@ export default function App() {
 					</Link>
 				</nav>
 
-				<div className="flex flex-col items-center p-4 md:p-8 mt-4 md:mt-8 pb-48">
-					<div className="max-w-xl w-full">
+				<div className="flex flex-col items-center p-4 md:p-8 mt-4 md:mt-8">
+					<div className="max-w-xl w-full pb-48">
 						<Outlet />
 					</div>
 				</div>

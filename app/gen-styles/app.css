@@ -472,6 +472,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: static;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -510,10 +514,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex {
   display: flex;
-}
-
-.table {
-  display: table;
 }
 
 .aspect-video {
@@ -594,6 +594,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-48 {
   padding-bottom: 12rem;
+}
+
+.pb-96 {
+  padding-bottom: 24rem;
 }
 
 .text-center {
