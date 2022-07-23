@@ -16,8 +16,8 @@ export default function Software() {
 				, where we are using AI to improve medical care.
 			</p>
 			<p>
-				Before that, I worked at CarTrawler and UBiqube, did freelance projects,
-				and founded a startup called Concert Window.
+				Before that, I worked at CarTrawler and UBiqube, ran a freelance
+				consultancy, and founded a startup called Concert Window.
 			</p>
 			<p>
 				I love open source and enjoy working on side projects when time permits.
