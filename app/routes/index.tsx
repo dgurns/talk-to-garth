@@ -41,20 +41,24 @@ export default function Index() {
 				<a href="https://www.linkedin.com/in/dangurney/">
 					<img
 						src="/images/LinkedIn-White-96.png"
+						height={24}
+						width={24}
 						alt="LinkedIn"
-						className="h-6 hover:scale-125 transition-all"
+						className="md:hover:scale-125 md:transition-all"
 					/>
 				</a>
 				<a href="https://github.com/dgurns">
 					<img
 						src="/images/GitHub-White-120.png"
+						height={24}
+						width={24}
 						alt="GitHub"
-						className="h-6 hover:scale-125 transition-all"
+						className="md:hover:scale-125 md:transition-all"
 					/>
 				</a>
 				<a
 					href="mailto:dan@dangurney.net"
-					className="text-gray-600 text-3xl hover:no-underline hover:scale-125 transition-all"
+					className="text-gray-600 text-3xl md:hover:no-underline md:hover:scale-125 md:transition-all"
 				>
 					✉️
 				</a>
