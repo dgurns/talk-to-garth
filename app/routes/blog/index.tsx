@@ -13,6 +13,11 @@ interface Post {
 }
 export const posts: Post[] = [
 	{
+		title: 'Migrating Trad Archive from NextJS to Remix',
+		date: 'August 7, 2022',
+		slug: 'migrating-trad-archive-to-remix',
+	},
+	{
 		title: 'Promo Video for "From the Bridge"',
 		date: 'June 23, 2022',
 		slug: 'promo-from-the-bridge',

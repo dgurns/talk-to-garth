@@ -39,8 +39,12 @@ p {
 	@apply mb-0;
 }
 
+.blog-post img {
+	@apply mb-8;
+}
+
 .blog-post ul {
-	@apply list-disc list-inside;
+	@apply list-disc list-inside mb-4;
 }
 
 .blog-post ol {
@@ -52,7 +56,7 @@ p {
 }
 
 .blog-post pre code {
-	@apply flex w-full bg-black rounded whitespace-pre-line text-sm p-4 mt-8 mb-8;
+	@apply flex w-full bg-black rounded whitespace-pre-wrap text-sm p-4 mt-8 mb-8;
 }
 
 .blog-post code {
