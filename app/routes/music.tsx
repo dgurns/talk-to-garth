@@ -17,10 +17,6 @@ export function meta() {
 	};
 }
 
-interface LoaderData {
-	latestVideoId: string;
-}
-
 interface YouTubeResponse {
 	items: Array<{
 		id: { videoId: string };
@@ -34,13 +30,14 @@ export async function loader({ context }: LoaderArgs) {
 		`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&maxResults=1&order=date&type=video&key=${apiKey}`
 	);
 	const data = await res.json<YouTubeResponse>();
-	return json<LoaderData>({
-		latestVideoId: data.items[0].id.videoId,
+	const latestVideoId = data.items ? data.items[0].id.videoId : 'sVfTHcPqo9E';
+	return json({
+		latestVideoId,
 	});
 }
 
 export default function Music() {
-	const { latestVideoId } = useLoaderData<LoaderData>();
+	const { latestVideoId } = useLoaderData<typeof loader>();
 
 	return (
 		<div>

@@ -30,17 +30,15 @@ Deployed via CI/CD on every git push:
 - AWS Lambda (server)
 - Planetscale (DB) 
  
-The benefits of that stack are nice, but it has a _lot_ of dependencies. If Trad Archive is going to be a sustainable open source project, other devs need to easily understand the code and make changes. This stack had too many edge cases and quirks. 
+The benefits of that stack are nice, but it has a _lot_ of dependencies. If Trad Archive is going to be a sustainable open source project, its code needs to be easily understandable for other devs. There can't be obscure edge cases and quirks. 
 
 This illustrates the gist of what was happening (h/t to [Theo](https://twitter.com/t3dotgg)):
 
 <img src="/images/midwit.jpeg" width="100%" />
 
-<img src="/images/midwit2.jpeg" width="100%" />
+It was time to simplify.
 
-I realized I needed to simplify.
-
-I wanted to keep the benefits of the old stack -- especially the full preview deploys -- but needed to remove boilerplate, reduce the number of interfaces, and streamline deployment.
+I wanted to keep the benefits of the old stack – especially the full preview deploys – but wanted to remove boilerplate, reduce the number of network interfaces, have fewer dependencies, and streamline deployment.
 
 Remix turned out to be a great solution.
 
@@ -56,11 +54,13 @@ The basic summary is that instead of having a client app which consumes data fro
 
 I recommend reading through the Remix [homepage](https://remix.run) to get a better sense of how it works.
 
-Basically, when a request comes into your Remix app, you can define a [loader](https://remix.run/docs/en/v1/api/conventions#loader) which runs on the server, fetches data, and returns static HTML to the client. 
+Basically, when a request comes into your Remix app, you can define a [loader function](https://remix.run/docs/en/v1/api/conventions#loader) which runs on the server, fetches data, does an initial render of your component, and returns static HTML to the client. Then the client is progressively enhanced with JS so you still have a fully dynamic app. 
 
-The `loader` essentially is the API. But you don't have to define a GraphQL schema, or endpoints, or anything like that. You can just query the DB directly and return data for your component. 
+The `loader` is essentially the API and runs behind the scenes as a serverless function. But Remix handles abstracting away the infrastructure. The data fetching code sits in the same file as the markup. To the developer, it's seamless, and there is no third-party network request. 
 
 ```js
+// MyComponent.tsx
+
 export async function loader() {  
 	const items = await db.item.findMany();
 	return json(items);
@@ -82,10 +82,13 @@ After I migrated to Remix, overall app code decreased from about 30k to 20k line
 
 And things were a lot simpler to reason about. If you can understand Remix and Prisma, that's all you really need to know. 
 
-There's a single deployment via Vercel, instead of simultaneous deployments to Vercel and Lambda. That makes production and preview deploys simpler, as well as rollbacks.
+There's a single deployment via Vercel, instead of simultaneous deployments to Vercel and AWS Lambda. That makes production and preview deploys simpler, as well as rollbacks.
 
 I also took the opportunity to remove features that weren't being actively used.
 
-Deleting code is one of my favorite things in software engineering. It usually means you have learned something and found a better way to do it. 
+Deleting code is one of my favorite things in software engineering. It usually means you have learned something and found a better approach. 
 
-Now [Trad Archive](https://github.com/dgurns/trad-archive) is easier to develop on, faster for users, and should be on the path to a more sustainable future. 
+> "The fastest code is the code which does not run. The code easiest to maintain is the code that was never written."
+– Robert Galanakis
+
+Now [Trad Archive](https://github.com/dgurns/trad-archive) is easier to develop on, faster for users, and better positioned for a sustainable future. 
