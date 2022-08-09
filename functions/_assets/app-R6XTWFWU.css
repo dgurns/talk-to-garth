@@ -626,8 +626,9 @@ html, body {
 
 h1 {
   font-size: 3rem;
+  line-height: 1;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 2.5rem;
 }
 
 h2 {

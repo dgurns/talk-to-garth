@@ -4,11 +4,11 @@
 
 html,
 body {
-	@apply font-sans bg-gray-900 text-gray-50 leading-7;
+	@apply font-sans bg-gray-900 text-gray-50;
 }
 
 h1 {
-	@apply text-5xl font-bold leading-snug;
+	@apply text-5xl font-bold leading-tight;
 }
 
 h2 {
