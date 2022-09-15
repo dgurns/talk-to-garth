@@ -642,6 +642,10 @@ button:hover,
   height: 6rem;
 }
 
+.h-\[500px\] {
+  height: 500px;
+}
+
 .w-3\/4 {
   width: 75%;
 }
