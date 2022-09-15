@@ -595,6 +595,10 @@ a {
 
 /* custom classes go here */
 
+.static {
+  position: static;
+}
+
 .absolute {
   position: absolute;
 }
@@ -623,14 +627,6 @@ a {
   margin-top: 2rem;
 }
 
-.mr-8 {
-  margin-right: 2rem;
-}
-
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
 .flex {
   display: flex;
 }
@@ -643,8 +639,8 @@ a {
   height: 100vh;
 }
 
-.h-\[500px\] {
-  height: 500px;
+.h-\[400px\] {
+  height: 400px;
 }
 
 .h-full {
@@ -797,6 +793,10 @@ a {
 @media (min-width: 768px) {
   .md\:h-auto {
     height: auto;
+  }
+
+  .md\:h-\[500px\] {
+    height: 500px;
   }
 
   .md\:max-w-md {
