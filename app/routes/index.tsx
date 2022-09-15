@@ -77,13 +77,13 @@ export default function Home() {
 			]);
 			formRef.current.reset();
 		}
-	}, [state, chats]);
+	}, [state]);
 
 	useEffect(() => {
 		if (data?.response) {
 			setChats([...chats, { author: 'ai', text: data.response }]);
 		}
-	}, [data, chats]);
+	}, [data]);
 
 	useEffect(() => {
 		if (chats && chatsRef.current) {

@@ -13,7 +13,7 @@
 
 	button,
 	button[type="submit"] {
-		@apply hover: bg-orange-800 rounded py-2 px-4;
+		@apply bg-orange-700 hover:bg-orange-800 rounded py-2 px-4;
 	}
 }
 

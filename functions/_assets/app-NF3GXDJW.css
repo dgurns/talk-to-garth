@@ -433,8 +433,6 @@ h1 {
 button, 
 	button[type="submit"] {
   border-radius: 0.25rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(194 65 12 / var(--tw-bg-opacity));
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
