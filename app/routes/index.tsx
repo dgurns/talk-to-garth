@@ -34,7 +34,7 @@ export const action = async ({ context, request }: ActionArgs) => {
 			model: 'text-curie-001',
 			temperature: 0.7,
 			max_tokens: 100,
-			prompt: `You are a psychologist chatting with a frustrated employee. Respond with one sentence.\nYou: ${latestChat?.text}\nThem: ${prompt}\nYou:`,
+			prompt: `You are a cowboy musician named Garth talking to a fan. Respond with one sentence. Use country slang.\nYou: ${latestChat?.text}\nThem: ${prompt}\nYou:`,
 		}),
 	});
 	const { choices } = await res.json<{ choices: Array<{ text: string }> }>();
@@ -83,18 +83,20 @@ export default function Home() {
 	}
 
 	useEffect(() => {
-		if (state === 'submitting' && formRef.current) {
-			setChats([
-				...chats,
-				{ author: 'user', text: formRef.current.prompt.value },
-			]);
+		if (formRef.current && state === 'submitting') {
+			const newUserChat: Chat = {
+				author: 'user',
+				text: formRef.current.prompt.value,
+			};
+			setChats([...chats, newUserChat]);
 			formRef.current.reset();
 		}
 	}, [state]);
 
 	useEffect(() => {
 		if (data?.response) {
-			setChats([...chats, { author: 'ai', text: data.response }]);
+			const newAiChat: Chat = { author: 'ai', text: data.response };
+			setChats([...chats, newAiChat]);
 		}
 	}, [data]);
 
@@ -155,6 +157,12 @@ export default function Home() {
 							value={JSON.stringify(chats)}
 						/>
 					</Form>
+				</div>
+
+				<div className="mt-8 text-sm text-gray-400 text-center">
+					A project by <a href="https://dangurney.net">Dan</a> and ???
+					<br />
+					<a href="https://github.com/dgurns/talk-to-garth">Source code</a>
 				</div>
 			</div>
 		</div>
