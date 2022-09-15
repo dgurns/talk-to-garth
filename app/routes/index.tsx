@@ -160,7 +160,8 @@ export default function Home() {
 				</div>
 
 				<div className="mt-8 text-sm text-gray-400 text-center">
-					A project by <a href="https://dangurney.net">Dan</a> and ???
+					A project by <a href="https://dangurney.net">Dan</a> and{' '}
+					<a href="https://www.instagram.com/retrored1">Padraig</a>
 					<br />
 					<a href="https://github.com/dgurns/talk-to-garth">Source code</a>
 				</div>
