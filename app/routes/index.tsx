@@ -1,87 +1,147 @@
-import { Link } from '@remix-run/react';
-import { useState } from 'react';
-import { posts } from 'app/routes/blog/index';
+import React, { useEffect, useRef, useState } from 'react';
+import { Form, useActionData, useTransition } from '@remix-run/react';
+import { type ActionArgs, json } from '@remix-run/cloudflare';
 
-export const meta = () => ({
-	title: 'Dan Gurney - Personal Site',
-});
+interface Chat {
+	author: 'user' | 'ai';
+	text: string;
+}
 
-const mostRecentPost = posts[0];
+interface ActionData {
+	error?: string;
+	response?: string;
+}
 
-export default function Index() {
-	const [showYears, setShowYears] = useState(false);
+export const action = async ({ context, request }: ActionArgs) => {
+	const formData = await request.formData();
+	const prompt = formData.get('prompt');
+	const previousChats = formData.get('previous-chats') as string;
+	const parsedChats = JSON.parse(previousChats) as Chat[];
+	const latestChat = parsedChats.pop();
+
+	const res = await fetch('https://api.openai.com/v1/completions', {
+		method: 'POST',
+		headers: {
+			Authorization: `Bearer ${context.OPENAI_API_KEY}`,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			model: 'text-curie-001',
+			temperature: 0.7,
+			max_tokens: 100,
+			prompt: `You are a psychologist chatting with a frustrated employee. Respond with one sentence.\nYou: ${latestChat?.text}\nThem: ${prompt}\nYou:`,
+		}),
+	});
+	const { choices } = await res.json<{ choices: Array<{ text: string }> }>();
+	if (choices.length === 0) {
+		return json<ActionData>({ error: 'No choices returned' }, { status: 500 });
+	}
+	return json<ActionData>(
+		{
+			response: choices[0].text,
+		},
+		{ status: 200 }
+	);
+};
+
+interface ChatBubbleProps {
+	chat: Chat;
+}
+function ChatBubble({ chat }: ChatBubbleProps) {
+	return (
+		<div
+			className={`${
+				chat.author === 'ai' ? 'bg-blue-300' : 'bg-green-300'
+			} w-3/4 p-3 rounded text-gray-900`}
+		>
+			{chat.text}
+		</div>
+	);
+}
+
+export default function Home() {
+	const data = useActionData<ActionData>();
+	const formRef = useRef<HTMLFormElement>(null);
+	const chatsRef = useRef<HTMLUListElement>(null);
+	const { state } = useTransition();
+
+	const [chats, setChats] = useState<Chat[]>([
+		{ author: 'ai', text: 'Howdy, what would you like to ask me?' },
+	]);
+
+	useEffect(() => {
+		if (state === 'submitting' && formRef.current) {
+			setChats([
+				...chats,
+				{ author: 'user', text: formRef.current.prompt.value },
+			]);
+			formRef.current.reset();
+		}
+	}, [state, chats]);
+
+	useEffect(() => {
+		if (data?.response) {
+			setChats([...chats, { author: 'ai', text: data.response }]);
+		}
+	}, [data, chats]);
+
+	useEffect(() => {
+		if (chats && chatsRef.current) {
+			chatsRef.current?.scrollTo({
+				top: chatsRef.current.scrollHeight,
+				behavior: 'smooth',
+			});
+		}
+	}, [chats]);
 
 	return (
-		<div className="flex flex-col items-center justify-center text-center mt-8 md:mt-16">
-			<img
-				src="/images/DanGurneyPhotoCircle.png"
-				alt="Dan Gurney"
-				className="h-36"
-			/>
-			<h1 className="mt-4">👋🏻 Hi, I'm Dan</h1>
-
-			<ul className="mt-12 space-y-2">
-				<li>
-					I'm <Link to="/software">lead engineer</Link> at Prediction Health
-				</li>
-				<li>
-					I play the <Link to="/music">accordion</Link>
-				</li>
-				{mostRecentPost && (
-					<li>
-						Latest blog post:{' '}
-						<Link to={`/blog/${mostRecentPost.slug}`}>
-							{mostRecentPost.title}
-						</Link>
-					</li>
-				)}
-			</ul>
-
-			<footer className="flex flex-row items-center space-x-4 mt-10">
-				<a href="https://www.linkedin.com/in/dangurney/">
+		<div className="flex flex-col items-center justify-start w-full h-screen">
+			<div className="flex w-full md:max-w-md h-screen md:h-auto flex-col items-center justify-start py-4 px-4">
+				<div className="flex flex-row items-center justify-start mt-4">
 					<img
-						src="/images/LinkedIn-White-96.png"
-						height={24}
-						width={24}
-						alt="LinkedIn"
-						className="md:hover:scale-125 md:transition-all"
+						src="/logo.png"
+						width={80}
+						height={80}
+						className="rounded-2xl mr-4"
+						alt="Logo"
 					/>
-				</a>
-				<a href="https://github.com/dgurns">
-					<img
-						src="/images/GitHub-White-120.png"
-						height={24}
-						width={24}
-						alt="GitHub"
-						className="md:hover:scale-125 md:transition-all"
-					/>
-				</a>
-				<a
-					href="mailto:dan@dangurney.net"
-					className="text-gray-600 text-3xl md:hover:no-underline md:hover:scale-125 md:transition-all"
-				>
-					✉️
-				</a>
-			</footer>
+					<h1>Talk to Garth</h1>
+				</div>
 
-			<div className="text-center text-gray-400 text-sm mt-2">
-				<button onClick={() => setShowYears(!showYears)}>
-					<ul>
-						<li>2022: Year of the Comeback</li>
-						{showYears && (
-							<>
-								<li>2021: Year of the Upside</li>
-								<li>2020: Year of the Launch</li>
-								<li>2019: Year of the Unexpected</li>
-								<li>2018: Year of No Filter</li>
-								<li>2017: Year of the Wild</li>
-								<li>2016: Year of the High Life</li>
-								<li>2015: Year of the Big Picture</li>
-								<li>2014: Year of the Nuance</li>
-							</>
-						)}
+				<div className="flex flex-col w-full h-[400px] md:h-[500px] p-2 bg-gray-800 border border-gray-600 rounded mt-8 overflow-y-scroll relative">
+					<ul
+						className="flex flex-col w-full h-full overflow-y-scroll space-y-4 pb-8"
+						ref={chatsRef}
+					>
+						{chats.map((chat, index) => (
+							<li
+								key={index}
+								className={`flex flex-row ${
+									chat.author === 'ai' ? 'justify-start' : 'justify-end'
+								}`}
+							>
+								<ChatBubble chat={chat} />
+							</li>
+						))}
 					</ul>
-				</button>
+
+					<Form method="post" ref={formRef} className="relative h-24">
+						<textarea
+							name="prompt"
+							required
+							className="w-full h-24 resize-none bg-gray-400 rounded p-3 pr-24 text-gray-900 placeholder:text-gray-600"
+							placeholder="Start chatting with Garth..."
+						></textarea>
+						<button type="submit" className="absolute bottom-3 right-3">
+							Send
+						</button>
+						<input
+							type="hidden"
+							name="previous-chats"
+							value={JSON.stringify(chats)}
+						/>
+					</Form>
+				</div>
 			</div>
 		</div>
 	);

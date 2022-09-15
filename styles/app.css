@@ -2,63 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-	@apply font-sans bg-gray-900 text-gray-50;
+@layer base {
+	html {
+		@apply bg-gray-900 text-gray-50;
+	}
+
+	h1 {
+		@apply text-4xl font-bold;
+	}
+
+	button,
+	button[type="submit"] {
+		@apply hover: bg-orange-800 rounded py-2 px-4;
+	}
 }
 
-h1 {
-	@apply text-5xl font-bold leading-tight;
-}
-
-h2 {
-	@apply text-2xl font-bold;
-}
-
-a {
-	@apply text-blue-200 hover:underline;
-}
-
-p {
-	@apply mb-4;
-}
-
-.blog-post h2 {
-	@apply mt-8 mb-8;
-}
-
-.blog-post iframe {
-	@apply mb-8;
-}
-
-.blog-post blockquote {
-	@apply p-4 mt-8 mb-8 bg-gray-800 text-gray-200 border-l-2 border-gray-400 rounded rounded-l-none;
-}
-
-.blog-post blockquote p {
-	@apply mb-0;
-}
-
-.blog-post img {
-	@apply mb-8;
-}
-
-.blog-post ul {
-	@apply list-disc list-inside mb-4;
-}
-
-.blog-post ol {
-	@apply list-decimal;
-}
-
-.blog-post hr {
-	@apply border-gray-400 mt-8 mb-8 mx-[10%];
-}
-
-.blog-post pre code {
-	@apply flex w-full bg-black rounded whitespace-pre-wrap text-sm p-4 mt-8 mb-8;
-}
-
-.blog-post code {
-	@apply bg-black text-sm px-1 py-1 rounded;
+@layer components {
+	/* custom classes go here */
 }
