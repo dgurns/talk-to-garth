@@ -123,7 +123,7 @@ export default function Home() {
 					<h1>Talk to Garth</h1>
 				</div>
 
-				<div className="flex flex-col w-full h-[500px] p-2 bg-gray-800 border border-gray-600 rounded mt-8 overflow-y-scroll relative">
+				<div className="flex flex-col w-full h-[400px] md:h-[500px] p-2 bg-gray-800 border border-gray-600 rounded mt-8 overflow-y-scroll relative">
 					<ul
 						className="flex flex-col w-full h-full overflow-y-scroll space-y-4 pb-8"
 						ref={chatsRef}
