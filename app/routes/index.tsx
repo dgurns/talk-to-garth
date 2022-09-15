@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Form, useActionData, useTransition } from '@remix-run/react';
+import {
+	Form,
+	useActionData,
+	useTransition,
+	useSubmit,
+} from '@remix-run/react';
 import { type ActionArgs, json } from '@remix-run/cloudflare';
 
 interface Chat {
@@ -69,6 +74,14 @@ export default function Home() {
 		{ author: 'ai', text: 'Howdy, what would you like to ask me?' },
 	]);
 
+	const submit = useSubmit();
+	function onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
+		if (e.key === 'Enter' && formRef.current) {
+			e.preventDefault();
+			submit(formRef.current, { replace: true });
+		}
+	}
+
 	useEffect(() => {
 		if (state === 'submitting' && formRef.current) {
 			setChats([
@@ -131,6 +144,7 @@ export default function Home() {
 							required
 							className="w-full h-24 resize-none bg-gray-400 rounded p-3 pr-24 text-gray-900 placeholder:text-gray-600"
 							placeholder="Start chatting with Garth..."
+							onKeyDown={onKeyDown}
 						></textarea>
 						<button type="submit" className="absolute bottom-3 right-3">
 							Send
